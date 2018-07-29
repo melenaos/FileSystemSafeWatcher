@@ -77,9 +77,9 @@ namespace menelabs.core
     /// This class wraps a FileSystemWatcher object. The class is not derived
     /// from FileSystemWatcher because most of the FileSystemWatcher methods
     /// are not virtual. The class was designed to resemble FileSystemWatcher class
-    /// as much as possible so that you can use DelayedFileSystemWatcher instead
+    /// as much as possible so that you can use FileSystemSafeWatcher instead
     /// of FileSystemWatcher objects.
-    /// DelayedFileSystemWatcher will capture all events from the FileSystemWatcher object.
+    /// FileSystemSafeWatcher will capture all events from the FileSystemWatcher object.
     /// The captured events will be delayed by at least ConsolidationInterval milliseconds in order
     /// to be able to eliminate duplicate events. When duplicate events are found, the last event
     /// is droped and the first event is fired (the reverse is not recomended because it could
