@@ -65,7 +65,7 @@ namespace menelabs.core
             // they update the file with the file content.
             return ((eO1 != null && eO2 != null && eO1.ChangeType == eO2.ChangeType
                 && eO1.FullPath == eO2.FullPath && eO1.Name == eO2.Name) &&
-                ((reO1 == null & reO2 == null) || (reO1 != null && reO2 != null &&
+                ((reO1 == null && reO2 == null) || (reO1 != null && reO2 != null &&
                 reO1.OldFullPath == reO2.OldFullPath && reO1.OldName == reO2.OldName))) ||
                 (eO1 != null && eO2 != null && eO1.ChangeType == WatcherChangeTypes.Created
                 && eO2.ChangeType == WatcherChangeTypes.Changed
