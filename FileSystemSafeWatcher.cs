@@ -13,7 +13,7 @@ namespace menelabs.core
     /// <summary>
     /// This class wraps FileSystemEventArgs and RenamedEventArgs objects and detection of duplicate events.
     /// </summary>
-    internal class DelayedEvent
+    public class DelayedEvent
     {
         private readonly FileSystemEventArgs _args;
 
@@ -86,7 +86,7 @@ namespace menelabs.core
     /// cause some events not be fired at all since the last event will become the first event and
     /// it won't fire a if a new similar event arrives imediately afterwards).
     /// </summary>
-    internal class FileSystemSafeWatcher
+    public class FileSystemSafeWatcher
     {
         private readonly FileSystemWatcher _fileSystemWatcher;
 
