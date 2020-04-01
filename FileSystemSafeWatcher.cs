@@ -9,7 +9,6 @@ using System.ComponentModel;
 
 namespace menelabs.core
 {
-
     /// <summary>
     /// This class wraps FileSystemEventArgs and RenamedEventArgs objects and detection of duplicate events.
     /// </summary>
@@ -86,7 +85,7 @@ namespace menelabs.core
     /// cause some events not be fired at all since the last event will become the first event and
     /// it won't fire a if a new similar event arrives imediately afterwards).
     /// </summary>
-    public class FileSystemSafeWatcher
+    public class FileSystemSafeWatcher : IDisposable
     {
         private readonly FileSystemWatcher _fileSystemWatcher;
 
@@ -143,6 +142,7 @@ namespace menelabs.core
                 }
             }
         }
+        
         /// <summary>
         /// Gets or sets the filter string, used to determine what files are monitored in a directory.
         /// </summary>
@@ -158,6 +158,7 @@ namespace menelabs.core
                 _fileSystemWatcher.Filter = value;
             }
         }
+        
         /// <summary>
         /// Gets or sets a value indicating whether subdirectories within the specified path should be monitored.
         /// </summary>
@@ -173,6 +174,7 @@ namespace menelabs.core
                 _fileSystemWatcher.IncludeSubdirectories = value;
             }
         }
+        
         /// <summary>
         /// Gets or sets the size of the internal buffer.
         /// </summary>
@@ -188,6 +190,7 @@ namespace menelabs.core
                 _fileSystemWatcher.InternalBufferSize = value;
             }
         }
+        
         /// <summary>
         /// Gets or sets the type of changes to watch for.
         /// </summary>
@@ -204,6 +207,7 @@ namespace menelabs.core
                 _fileSystemWatcher.NotifyFilter = value;
             }
         }
+        
         /// <summary>
         /// Gets or sets the path of the directory to watch.
         /// </summary>
@@ -220,6 +224,7 @@ namespace menelabs.core
                 _fileSystemWatcher.Path = value;
             }
         }
+        
         /// <summary>
         /// Gets or sets the object used to marshal the event handler calls issued as a result of a directory change.
         /// </summary>
@@ -235,22 +240,27 @@ namespace menelabs.core
                 _fileSystemWatcher.SynchronizingObject = value;
             }
         }
+        
         /// <summary>
         /// Occurs when a file or directory in the specified System.IO.FileSystemWatcher.Path is changed.
         /// </summary>
         public event FileSystemEventHandler Changed;
+        
         /// <summary>
         /// Occurs when a file or directory in the specified System.IO.FileSystemWatcher.Path is created.
         /// </summary>
         public event FileSystemEventHandler Created;
+        
         /// <summary>
         /// Occurs when a file or directory in the specified System.IO.FileSystemWatcher.Path is deleted.
         /// </summary>
         public event FileSystemEventHandler Deleted;
+        
         /// <summary>
         /// Occurs when the internal buffer overflows.
         /// </summary>
         public event ErrorEventHandler Error;
+        
         /// <summary>
         /// Occurs when a file or directory in the specified System.IO.FileSystemWatcher.Path is renamed.
         /// </summary>
@@ -263,6 +273,7 @@ namespace menelabs.core
         {
             _fileSystemWatcher.BeginInit();
         }
+        
         /// <summary>
         /// Releases the unmanaged resources used by the System.IO.FileSystemWatcher and optionally releases the managed resources.
         /// </summary>
@@ -270,6 +281,7 @@ namespace menelabs.core
         {
             Uninitialize();
         }
+        
         /// <summary>
         /// Ends the initialization of a System.IO.FileSystemWatcher used on a form or used by another component. The initialization occurs at run time.
         /// </summary>
@@ -277,6 +289,7 @@ namespace menelabs.core
         {
             _fileSystemWatcher.EndInit();
         }
+        
         /// <summary>
         /// Raises the System.IO.FileSystemWatcher.Changed event.
         /// </summary>
@@ -286,6 +299,7 @@ namespace menelabs.core
             if (Changed != null)
                 Changed(this, e);
         }
+        
         /// <summary>
         /// Raises the System.IO.FileSystemWatcher.Created event.
         /// </summary>
@@ -295,6 +309,7 @@ namespace menelabs.core
             if (Created != null)
                 Created(this, e);
         }
+        
         /// <summary>
         /// Raises the System.IO.FileSystemWatcher.Deleted event.
         /// </summary>
@@ -304,6 +319,7 @@ namespace menelabs.core
             if (Deleted != null)
                 Deleted(this, e);
         }
+        
         /// <summary>
         /// Raises the System.IO.FileSystemWatcher.Error event.
         /// </summary>
@@ -313,6 +329,7 @@ namespace menelabs.core
             if (Error != null)
                 Error(this, e);
         }
+        
         /// <summary>
         /// Raises the System.IO.FileSystemWatcher.Renamed event.
         /// </summary>
@@ -322,6 +339,7 @@ namespace menelabs.core
             if (Renamed != null)
                 Renamed(this, e);
         }
+        
         /// <summary>
         /// A synchronous method that returns a structure that contains specific information on the change that occurred, given the type of change you want to monitor.
         /// </summary>
@@ -332,6 +350,7 @@ namespace menelabs.core
             //TODO
             throw new NotImplementedException();
         }
+        
         /// <summary>
         /// A synchronous method that returns a structure that contains specific information on the change that occurred, given the type of change you want to monitor
         /// and the time (in milliseconds) to wait before timing out.
@@ -508,5 +527,4 @@ namespace menelabs.core
         }
         #endregion
     }
-
 }
