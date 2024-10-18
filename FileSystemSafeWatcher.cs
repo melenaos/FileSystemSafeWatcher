@@ -383,7 +383,8 @@ namespace Menelabs
                                 }
 
                                 bool raiseEvent = true;
-                                if (current.Args.ChangeType == WatcherChangeTypes.Created || current.Args.ChangeType == WatcherChangeTypes.Changed)
+                                if ((current.Args.ChangeType == WatcherChangeTypes.Created || current.Args.ChangeType == WatcherChangeTypes.Changed) 
+                                    && File.Exists(current.Args.FullPath))
                                 {
                                     //check if the file has been completely copied (can be opened for read)
                                     FileStream stream = null;
